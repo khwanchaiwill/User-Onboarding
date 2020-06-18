@@ -18,6 +18,25 @@ const formSchema = Yup.object().shape({
     gender: Yup
         .string()
         .oneOf(["Male", "Female"], "Please select your gender"),
-   
+    role: Yup 
+        .string()
+        .oneOf(["Computer Engineer", "Full Stack WebDeveloper", "Backend Engineer", "FrontEnd Engineer",
+         "Web Designer", "Data Science", "iOS Development","Technician"], "Please Select Your Role"),
+    terms: Yup
+        .boolean()
+        .oneOf([true], "need to checked in checkbox"),
+        
+        movie : Yup
+        .boolean(),
+       
+        games : Yup
+        .boolean(),
+       
+        coding : Yup
+        .boolean(),
+    
+        travel : Yup
+        .boolean(),
+        
 })
 export default formSchema;

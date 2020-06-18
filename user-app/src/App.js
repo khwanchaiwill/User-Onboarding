@@ -35,20 +35,20 @@ const initialError = {
   gender: '',
   role: '',
 }
-const initialMembers = []
 const intialDisabled = true
 
 function App() {
-  const [member, setMember] = useState(initialMembers);
+  const [users, setUsers] = useState([]);
   const [formValues, setFromValues] = useState(initialFormValues);
   const [formErrors, setFormErrors] = useState(initialError);
   const [disabled, setDisabled] = useState(intialDisabled);
   
   useEffect(() => {
     const getUser = () => {
+      
     axios.get('https://reqres.in/api/users')
     .then( res =>{
-      setMember(res.data)
+      setUsers(res.data)
     })
     .catch(err => {
       console.log('Booooo!!! You will see me if it not right path')
@@ -57,10 +57,10 @@ function App() {
   }, [])
   
 
-  const postNewMember = newMember =>{
-    axios.post('https://reqres.in/api/users', newMember)
+  const postNewUsers = newUsers =>{
+    axios.post('https://reqres.in/api/users', newUsers)
     .then( res => {
-      setMember([...member, res.data])
+      setUsers([...users, res.data])
     })
     .catch(err => {
       debugger
@@ -94,6 +94,21 @@ function App() {
   }
   const checkboxChange = event => {
     const {name, checked} = event.target
+    Yup
+      .reach(formSchema, name)
+      .validate(checked)
+      .then(() => {
+        setFormErrors({
+          ...formErrors,
+          [name]: ""
+        })
+      })
+      .catch(err => {
+        setFormErrors({
+          ...formErrors,
+          [name]: err.errors[0]
+        })
+      })
     setFromValues({
       ...formValues,
       term: {
@@ -106,15 +121,16 @@ function App() {
       }
     })
   }
+  
   const onSubmit = event => {
     event.preventDefault()
 
-    const newMember = { 
+    const newUsers = { 
       ...formValues,
       interested: Object.keys(formValues.interested)
       .filter(interestedName =>(formValues.interested[interestedName] === true))
     }
-   postNewMember(newMember)
+   postNewUsers(newUsers)
   }
 
   useEffect(() =>  {
@@ -125,7 +141,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h2>Register the new Member</h2>
+        <h2>Register the new users</h2>
       </header>
       <div className="App-container">
         <FormMember
@@ -140,7 +156,7 @@ function App() {
       <div className="App-second-container">
         <h1 style={{color:'#FF00FF' }}>Show member</h1>
       {
-        member.map(mem =>{
+        users.map(mem =>{
            return <MemberHolder key={mem.id} info={mem} />
         })
        
