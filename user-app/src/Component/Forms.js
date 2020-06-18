@@ -85,7 +85,24 @@ function FormMember (props) {
                         value="Female"
                         onChange={inputChange}
                     />
-                </label>
+                </label><br />
+                 <label  className="label-form">Role:&nbsp;
+                <select 
+                    name="role"
+                    value={values.role}
+                    onChange={inputChange}
+                >
+                    <option value="Select Role">--Select Your Role--</option>
+                    <option> Computer Engineer </option>
+                    <option> Full Stack WebDeveloper</option>
+                    <option> Backend Engineer</option>
+                    <option> FrontEnd Engineer</option>
+                    <option> Web Designer</option>
+                    <option> Data Science</option>
+                    <option> iOS Development</option>
+                    <option>Technician</option>
+                </select>
+            </label><br/>
                 
                 </div>
             </div>
@@ -138,6 +155,7 @@ function FormMember (props) {
                             />
                             Term of service:&nbsp;
                     </label>
+                   
                 <div className="button-div">
                     <button disabled={disabled}>Submit</button>
                     <div className="error-container">

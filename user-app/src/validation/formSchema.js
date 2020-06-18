@@ -18,6 +18,6 @@ const formSchema = Yup.object().shape({
     gender: Yup
         .string()
         .oneOf(["Male", "Female"], "Please select your gender"),
-
+   
 })
 export default formSchema;

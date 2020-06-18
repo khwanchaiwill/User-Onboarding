@@ -15,6 +15,7 @@ function MemberHolder  ({info}){
                 <p> Username: {info.username} </p>
                 <p> Email Address: {info.email} </p>
                 <p> Gender: {info.gender} </p>
+                <p>ROLE: {info.role} </p>
             </div>   
                 
             {

@@ -15,6 +15,7 @@ const initialFormValues = {
   email: '',
   password: '',
   gender: '',
+  role: '',
   term: {
     terms:false,
   },
@@ -32,6 +33,7 @@ const initialError = {
   email: '',
   password: '',
   gender: '',
+  role: '',
 }
 const initialMembers = []
 const intialDisabled = true
